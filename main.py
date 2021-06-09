@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """ main.py """
 
-from configs.config import CFG
+from configs.configs import CFG
 from model.unet import UNet
 
 
