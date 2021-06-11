@@ -160,6 +160,7 @@ class UNet(BaseModel):
 
         return predictions
 
+
     def distributed_train(self):
         mirrored_strategy = tf.distribute.MirroredStrategy(devices=["/gpu:0", "/gpu:1"])
         with mirrored_strategy.scope():
@@ -167,14 +168,15 @@ class UNet(BaseModel):
             self.model.compile(...)
             self.model.fit(...)
 
+
         os.environ["TF_CONFIG"] = json.dumps(
             {
-                "cluster": {
+                "cluster":{
                     "worker": ["host1:port", "host2:port", "host3:port"]
                 },
-                "task": {
-                    "type": "worker",
-                    "index": 1
+                "task":{
+                     "type": "worker",
+                     "index": 1
                 }
             }
         )
@@ -191,7 +193,7 @@ class UNet(BaseModel):
             {
                 "cluster": {
                     "worker": ["host1:port", "host2:port", "host3:port"],
-                    "ps": ["host4:port", "host5:port"]
+                    "ps":  ["host4:port", "host5:port"]
                 },
                 "task": {
                     "type": "worker",
@@ -199,4 +201,3 @@ class UNet(BaseModel):
                 }
             }
         )
-
